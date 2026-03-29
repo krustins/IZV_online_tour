@@ -131,7 +131,7 @@ bildes.forEach(function(item) {
     bulta.style.transform = 'translate(-50%, -50%)';
 
     bulta.addEventListener('click', function() {
-      switchScene(link.uz);
+      mainitAinu(link.uz);
     });
 
     overlay.appendChild(bulta);
@@ -185,7 +185,7 @@ function mainitAinu(nosaukums) {
 /*
 window.addEventListener('keydown', function(e) {
   if (e.key === 'd' || e.key === 'D') {
-    var view = ainas[currentScene].view();
+    var view = ainas[tagadejaAina].view();
     var pmeters = view.parameters();
     console.log(
       currentScene,
@@ -197,7 +197,7 @@ window.addEventListener('keydown', function(e) {
 */
 
 // Palaišana.
-switchScene("ieeja");
+mainitAinu("ieeja");
 requestAnimationFrame(atjaunotBultinas);
 
 
