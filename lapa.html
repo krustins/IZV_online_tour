@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>IZV Virtual Tour</title>
     <style>
         html, body {
@@ -36,12 +37,122 @@
             opacity: 1;
             pointer-events: auto;
         }
+        #tekstlodzini1 {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(0, 0, 0, 0.78);
+            color: white;
+            padding: 20px 28px;
+            border-radius: 12px;
+            max-width: 300px;
+            min-width: 180px;
+            font-family: sans-serif;
+            font-size: 14px;
+            line-height: 1.6;
+            z-index: 300;
+            text-align: center;
+            box-shadow: 0 4px 24px rgba(0,0,0,0.4);
+        }
+        .tekstlodzini.aktivs {
+            opacity: 1;
+            pointer-events: auto;
+        }
+        .tekstlodzini {
+            position: absolute;
+            width: 36px;
+            height: 36px;
+            pointer-events: none;
+            cursor: pointer;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+}
+        #minimap {
+            position: fixed;
+            bottom: 16px;
+            right: 16px;
+            background: rgba(255,255,255,0.95);
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            padding: 8px;
+            z-index: 100;
+            width: 320px;
+        }
+        #minimap-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 11px;
+            color: #666;
+            margin-bottom: 6px;
+            font-family: sans-serif;
+        }
+        #minimap-header button {
+            font-size: 10px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: #999;
+        }
+        #minimap-body { display: block; }
+        #minimap-body.hidden { display: none; }
+        #minimap-img-wrap {
+            position: relative;
+            width: 100%;
+        }
+        #minimap-img {
+            width: 100%;
+            display: block;
+            opacity: 0.7;
+        }
+        .mdot {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: #aaa;
+            transform: translate(-50%, -50%);
+            cursor: pointer;
+            transition: background 0.2s, transform 0.2s;
+            border: 1.5px solid white;
+        }
+        .mdot:hover { transform: translate(-50%, -50%) scale(1.3); }
+        .mdot.active {
+            background: #1D9E75;
+            transform: translate(-50%, -50%) scale(1.2);
+        }
     </style>
-
+</head>
 <body>
     <div id="pano"></div>
     <div id="overlay"></div>
     <script src="marzipano.js"></script>
     <script src="main.js"></script>
+    <div id="minimap">
+        <div id="minimap-header">
+            <span>Telpu izkārtojums</span>
+            <button onclick="parslegtMinimap()">hide</button>
+        </div>
+        <div id="minimap-body">
+            <div id="minimap-img-wrap">
+                <img id="minimap-img" src="izvplans.png" draggable="false"/>
+                <!-- dots -->
+                <div class="mdot" id="md-zale1"              style="left:22%; top:50%" onclick="minimapKlikskis('zale1')"              ></div>
+                <div class="mdot" id="md-zale2"              style="left:7%;  top:20%" onclick="minimapKlikskis('zale2')"              ></div>
+                <div class="mdot" id="md-ieeja"              style="left:82%; top:14%" onclick="minimapKlikskis('ieeja')"              ></div>
+                <div class="mdot" id="md-402gaitenis"        style="left:42%; top:52%" onclick="minimapKlikskis('402gaitenis')"        ></div>
+                <div class="mdot" id="md-atp_telpa_gaitenis" style="left:30%; top:52%" onclick="minimapKlikskis('atp_telpa_gaitenis')" ></div>
+                <div class="mdot" id="md-ieeja_gaitenis"     style="left:80%; top:51%" onclick="minimapKlikskis('ieeja_gaitenis')"     ></div>
+                <div class="mdot" id="md-403gaitenis"        style="left:72%; top:52%" onclick="minimapKlikskis('403gaitenis')"        ></div>
+                <div class="mdot" id="md-gaitenis2"          style="left:82%; top:85%" onclick="minimapKlikskis('gaitenis2')"          ></div>
+                <div class="mdot" id="md-atp_telpa1"         style="left:30%; top:80%" onclick="minimapKlikskis('atp_telpa1')"         ></div>
+                <div class="mdot" id="md-atp_telpa2"         style="left:8%;  top:80%" onclick="minimapKlikskis('atp_telpa2')"         ></div>
+            </div>
+        </div>
+    </div>
 </body>
 </html>
